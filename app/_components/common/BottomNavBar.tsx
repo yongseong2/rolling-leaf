@@ -13,18 +13,7 @@ interface ButtonObject {
 
 export function BottomNavBar({ bottomNavSpace }: Props) {
   const router = useRouter();
-  const bottomMenu: ButtonObject[] = [
-    {
-      name: "Camera",
-      title: "카메라 인증",
-      func: () => router.push("/camera"),
-    },
-    {
-      name: "Profile",
-      title: "마이페이지",
-      func: () => router.push("/main"),
-    },
-  ];
+  const bottomMenu: ButtonObject[] = [];
   return (
     <div
       className="bg-gold w-full shadow-top-shadow rounded-t-md flex items-center justify-around"
