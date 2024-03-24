@@ -39,17 +39,6 @@ const Wrapper = ({
 
   const navConfig: NavConfigMap = {
     "/": { showTopNav: false, showBottomNav: false, navBarHeight: noneSpace },
-    "/main": { showTopNav: true, showBottomNav: true, navBarHeight: allSpace },
-    "/camera": {
-      showTopNav: true,
-      showBottomNav: false,
-      navBarHeight: topNavSpace,
-    },
-    default: {
-      showTopNav: false,
-      showBottomNav: false,
-      navBarHeight: noneSpace,
-    },
   };
 
   // 현재 경로에 맞는 설정을 가져옴 (경로가 없으면 'default' 사용)

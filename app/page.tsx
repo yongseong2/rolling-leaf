@@ -1,5 +1,9 @@
 import Wrapper from "./_components/common/Wrapper";
 
 export default function Home() {
-  return <Wrapper>안녕하세욧</Wrapper>;
+  return (
+    <Wrapper>
+      <div className="text-xl">나뭇잎 롤링페이퍼</div>
+    </Wrapper>
+  );
 }
