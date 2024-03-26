@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 
 interface Props {
   children: ReactNode;
-  style?: string;
+  className?: string;
 }
 interface NavConfig {
   showTopNav: boolean;
@@ -20,7 +20,7 @@ type NavConfigMap = {
 };
 
 const Wrapper = ({
-  style = "justify-between py-20 px-10",
+  className = "justify-between py-20 px-10",
   children,
 }: Props) => {
   const path = usePathname();
@@ -49,7 +49,7 @@ const Wrapper = ({
     <>
       {showTopNav && <TopNavBar topNavSpace={topNavSpace} path={path} />}
       <div
-        className={`flex flex-col items-center ${style}`}
+        className={`flex flex-col items-center ${className}`}
         style={{ minHeight: `calc(100vh - ${navBarHeight})` }}
       >
         {children}

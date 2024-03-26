@@ -18,7 +18,7 @@ export default function IconButton({
 }: IconButtonProps) {
   return (
     <button
-      className={`hover:opacity-60 transition-opacity duration-300 ${className}`}
+      className={`transition-opacity duration-300 hover:opacity-60 ${className}`}
       {...rest}
     >
       <Icon name={name} size={size} color={color} />

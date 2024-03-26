@@ -23,7 +23,7 @@ export function TopNavBar({ path, topNavSpace }: Props) {
 
   return (
     <div
-      className="bg-gray-50 w-full shadow-bottom-shadow rounded-b-md flex justify-between items-center px-6"
+      className="shadow-bottom-shadow flex w-full items-center justify-between rounded-b-md bg-gray-50 px-6"
       style={{ height: topNavSpace }}
     >
       {!(path && pathToTitle[path]) && (
@@ -45,7 +45,7 @@ export function TopNavBar({ path, topNavSpace }: Props) {
             size={20}
             onClick={() => router.back()}
           />
-          <div className="font-bold flex-grow text-center">
+          <div className="flex-grow text-center font-bold">
             {pathToTitle[path]}
           </div>
         </>
