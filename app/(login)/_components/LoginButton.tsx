@@ -5,7 +5,7 @@ export function LoginButton() {
   return (
     <Link href={"/main"}>
       <Image
-        className="mt-40 hover:opacity-60"
+        className="hover:opacity-60"
         src={"/images/KakaoLoginButtonLogo_small.png"}
         alt="login"
         width={200}
