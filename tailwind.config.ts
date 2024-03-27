@@ -8,10 +8,27 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        c2: "#41ba9d",
+        c1: "#5ed2b7",
+        c0: "#f6fbfa",
+        action: "#00916e",
+        "dark-text": "#002b20",
+        gray: "#888888",
+      },
+      height: {
+        "9/10": "110%",
+      },
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "radial-at-c":
+          "radial-gradient(ellipse at center, var(--tw-gradient-stops))",
+        "linear-custom-gradient":
+          "linear-gradient(180deg, var(--tw-gradient-stops))",
+        leaf: "url('/images/leaf.png')",
+      },
+      boxShadow: {
+        "top-shadow": "0 -1px 1px -1px rgba(0, 0, 0, 0.25)",
+        "bottom-shadow": "0 1px 1px -1px rgba(0, 0, 0, 0.25)",
       },
     },
   },
