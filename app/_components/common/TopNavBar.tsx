@@ -23,15 +23,12 @@ export function TopNavBar({ path, topNavSpace }: Props) {
 
   return (
     <div
-      className="shadow-bottom-shadow bg-c1 flex w-full items-center justify-between rounded-b-md px-6"
+      className="flex w-full items-center justify-between rounded-b-md bg-c1 px-6 shadow-bottom-shadow"
       style={{ height: topNavSpace }}
     >
       {!(path && pathToTitle[path]) && (
         <>
-          <div
-            className="text-gold font-bold"
-            onClick={() => router.push("/main")}
-          >
+          <div className="font-bold" onClick={() => router.push("/main")}>
             나뭇잎 롤링페이퍼
           </div>
           <IconButton name="Logout" size={30} onClick={handleLogout} />
@@ -45,9 +42,7 @@ export function TopNavBar({ path, topNavSpace }: Props) {
             size={20}
             onClick={() => router.back()}
           />
-          <div className="flex-grow text-center font-bold">
-            {pathToTitle[path]}
-          </div>
+          <div className="grow text-center font-bold">{pathToTitle[path]}</div>
         </>
       )}
     </div>

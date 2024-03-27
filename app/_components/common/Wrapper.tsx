@@ -47,7 +47,7 @@ export const Wrapper = ({ className, children }: Props) => {
     navConfig[path] || navConfig["default"];
 
   return (
-    <main className="from-c1 to-c2 bg-linear-custom-gradient">
+    <main className="bg-linear-custom-gradient from-c1 to-c2">
       {showTopNav && <TopNavBar topNavSpace={topNavSpace} path={path} />}
       <div
         className={`${className}`}

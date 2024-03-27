@@ -18,7 +18,7 @@ export function BottomNavBar({ bottomNavSpace }: Props) {
   ];
   return (
     <div
-      className="shadow-top-shadow absolute bottom-0 flex w-full items-center justify-around rounded-t-md bg-slate-50"
+      className="absolute bottom-0 flex w-full items-center justify-around rounded-t-md bg-slate-50 shadow-top-shadow"
       style={{ height: bottomNavSpace }}
     >
       {bottomMenu.map(item => {
