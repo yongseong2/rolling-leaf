@@ -9,10 +9,12 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        green: "#74f0d3",
-        greenLight: "#3ebb9d",
-        subGreen: "#7cdfc7",
-        subGreenLight: "#4cc7aa",
+        c2: "#41ba9d",
+        c1: "#5ed2b7",
+        c0: "#f6fbfa",
+        action: "#00916e",
+        "dark-text": "#002b20",
+        gray: "#888888",
       },
       height: {
         "9/10": "110%",
@@ -22,6 +24,11 @@ const config: Config = {
           "radial-gradient(ellipse at center, var(--tw-gradient-stops))",
         "linear-custom-gradient":
           "linear-gradient(180deg, var(--tw-gradient-stops))",
+        leaf: "url('/images/leaf.png')",
+      },
+      boxShadow: {
+        "top-shadow": "0 -1px 1px -1px rgba(0, 0, 0, 0.25)",
+        "bottom-shadow": "0 1px 1px -1px rgba(0, 0, 0, 0.25)",
       },
     },
   },

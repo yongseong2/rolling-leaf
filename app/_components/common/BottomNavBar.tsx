@@ -13,10 +13,12 @@ interface ButtonObject {
 
 export function BottomNavBar({ bottomNavSpace }: Props) {
   const router = useRouter();
-  const bottomMenu: ButtonObject[] = [];
+  const bottomMenu: ButtonObject[] = [
+    { name: "Profile", title: "프로필", func: () => console.log("안녕") },
+  ];
   return (
     <div
-      className="bg-gold shadow-top-shadow flex w-full items-center justify-around rounded-t-md"
+      className="shadow-top-shadow absolute bottom-0 flex w-full items-center justify-around rounded-t-md bg-slate-50"
       style={{ height: bottomNavSpace }}
     >
       {bottomMenu.map(item => {
@@ -29,7 +31,7 @@ export function BottomNavBar({ bottomNavSpace }: Props) {
             <div className="flex items-center justify-center">
               <Icon name={item.name} />
             </div>
-            <p className="mt-1 text-center text-xs font-bold">{item.title}</p>
+            {/* <p className="mt-1 text-center text-xs font-bold">{item.title}</p> */}
           </button>
         );
       })}

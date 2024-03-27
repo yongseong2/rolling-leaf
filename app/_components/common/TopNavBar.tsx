@@ -23,7 +23,7 @@ export function TopNavBar({ path, topNavSpace }: Props) {
 
   return (
     <div
-      className="shadow-bottom-shadow flex w-full items-center justify-between rounded-b-md bg-gray-50 px-6"
+      className="shadow-bottom-shadow bg-c1 flex w-full items-center justify-between rounded-b-md px-6"
       style={{ height: topNavSpace }}
     >
       {!(path && pathToTitle[path]) && (
@@ -32,7 +32,7 @@ export function TopNavBar({ path, topNavSpace }: Props) {
             className="text-gold font-bold"
             onClick={() => router.push("/main")}
           >
-            WAKE UP
+            나뭇잎 롤링페이퍼
           </div>
           <IconButton name="Logout" size={30} onClick={handleLogout} />
         </>

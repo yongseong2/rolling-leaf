@@ -19,15 +19,12 @@ type NavConfigMap = {
   [path: string]: NavConfig;
 };
 
-const Wrapper = ({
-  className = "justify-between py-20 px-10",
-  children,
-}: Props) => {
+export const Wrapper = ({ className, children }: Props) => {
   const path = usePathname();
   const { topNavSpace, bottomNavSpace, allSpace, noneSpace } = useMemo(() => {
     const noneSpace = "0vh";
     const topSpace = "7vh";
-    const bottomSpace = "7.5vh";
+    const bottomSpace = "8vh";
     const totalSpace = `${parseFloat(topSpace) + parseFloat(bottomSpace)}vh`;
     return {
       topNavSpace: topSpace,
@@ -38,7 +35,11 @@ const Wrapper = ({
   }, []);
 
   const navConfig: NavConfigMap = {
-    "/": { showTopNav: false, showBottomNav: false, navBarHeight: noneSpace },
+    "/main": {
+      showTopNav: false,
+      showBottomNav: true,
+      navBarHeight: bottomNavSpace,
+    },
   };
 
   // 현재 경로에 맞는 설정을 가져옴 (경로가 없으면 'default' 사용)
@@ -46,17 +47,15 @@ const Wrapper = ({
     navConfig[path] || navConfig["default"];
 
   return (
-    <>
+    <main className="from-c1 to-c2 bg-linear-custom-gradient">
       {showTopNav && <TopNavBar topNavSpace={topNavSpace} path={path} />}
       <div
-        className={`flex flex-col items-center ${className}`}
-        style={{ minHeight: `calc(100vh - ${navBarHeight})` }}
+        className={`${className}`}
+        style={{ minHeight: `calc(100vh - ${navBarHeight})`, overflow: "auto" }}
       >
         {children}
       </div>
       {showBottomNav && <BottomNavBar bottomNavSpace={bottomNavSpace} />}
-    </>
+    </main>
   );
 };
-
-export default React.memo(Wrapper);
