@@ -18,7 +18,9 @@ export default function LoginPage() {
           <h1 className="mt-10 font-bold text-dark-text">롤링페이퍼로</h1>
           <h1 className="font-bold text-dark-text">마을을 전해보세요</h1>
         </div>
-        <LoginButton />
+        <div className="mt-40">
+          <LoginButton />
+        </div>
       </div>
     </div>
   );
