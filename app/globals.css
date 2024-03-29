@@ -6,3 +6,43 @@
     text-wrap: balance;
   }
 }
+
+@keyframes pondX {
+  from {
+    background-position: left;
+  }
+  to {
+    background-position: right;
+  }
+}
+
+@keyframes pondY {
+  from {
+    background-position: top;
+  }
+  to {
+    background-position: bottom;
+  }
+}
+
+.pond::before,
+.pond::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.15;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://assets.codepen.io/1948355/water.jpg");
+}
+
+.pond::before {
+  filter: blur(3px);
+  animation: pondX 10s alternate infinite ease-in-out;
+}
+
+.pond::after {
+  filter: blur(6px);
+  animation: pondY 10s 5s alternate infinite ease-in-out;
+}
