@@ -12,7 +12,7 @@ interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 export default function IconButton({
   name,
   size = 24,
-  color = colors["gray-600"],
+  color = colors["dark-text"],
   className = "",
   ...rest
 }: IconButtonProps) {
