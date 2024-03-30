@@ -9,6 +9,7 @@ import { ClientLeaf } from "../_types/main";
 import { useQuery } from "@tanstack/react-query";
 import { QUERY_KEYS } from "@/app/query/QUERY_KEYS";
 import { getLeafs } from "../_api/main";
+import { useModalContext } from "@/app/_components/common/Modal/ModalContext";
 
 export default function MainPage() {
   const [leafs, setLeafs] = useState<ClientLeaf[]>([]);
