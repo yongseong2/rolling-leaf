@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import { ReduxProvider } from "./_store/provider";
 import localFont from "next/font/local";
+import ReactQueryProvider from "./query/ReactQueryProvider";
 
 const pretendard = localFont({
   src: "./_fonts/PretendardVariable.woff2",
@@ -22,7 +22,9 @@ export default function RootLayout({
     <html lang="ko">
       <link rel="manifest" href="/manifest.json" />
       <body className={pretendard.className}>
-        <ReduxProvider>{children}</ReduxProvider>
+        <ReduxProvider>
+          <ReactQueryProvider>{children}</ReactQueryProvider>
+        </ReduxProvider>
       </body>
     </html>
   );
