@@ -10,7 +10,7 @@ interface Props {
 
 export const Wrapper = ({ children }: Props) => {
   return (
-    <main className="flex h-screen min-h-screen flex-col overflow-auto bg-linear-custom-gradient from-c1 to-c2 px-6 py-14">
+    <main className="relative flex h-screen min-h-screen max-w-screen-md flex-col overflow-auto bg-linear-custom-gradient from-c1 to-c2 px-6 py-14">
       <IconButton
         className="absolute right-5 top-5 flex size-10 items-center justify-center rounded-full bg-c2"
         name="Plus"
