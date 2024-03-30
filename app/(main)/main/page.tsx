@@ -1,7 +1,7 @@
 "use client";
 import ShareIcon from "@/app/_asset/icons/flowbite/ShareIcon";
 import Button from "@/app/_components/common/Button";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { DraggableData } from "react-draggable";
 import { Leaf } from "../_components/Leaf";
 import { Pond } from "../_components/Pond";
@@ -9,42 +9,47 @@ import { ClientLeaf } from "../_types/main";
 import { useQuery } from "@tanstack/react-query";
 import { QUERY_KEYS } from "@/app/query/QUERY_KEYS";
 import { getLeafs } from "../_api/main";
+import { useModalContext } from "@/app/_components/common/Modal/ModalContext";
 
 export default function MainPage() {
   const [leafs, setLeafs] = useState<ClientLeaf[]>([]);
-  const randomPosition = (max: number) => Math.floor(Math.random() * max);
-
+  const randomPosition = (max: number) => {
+    return Math.floor(Math.random() * max);
+  };
+  const pondRef = useRef<HTMLDivElement>(null);
+  const [pondSize, setPondSize] = useState({ width: 0, height: 0 });
   const { data, isSuccess } = useQuery({
     queryKey: [QUERY_KEYS.GET_LEAF],
     queryFn: async () => await getLeafs(),
     select: data =>
-      data.map(leaf => ({
-        ...leaf,
-        x: randomPosition(200),
-        y: randomPosition(200),
-      })),
+      data.map(leaf => {
+        return {
+          ...leaf,
+          x: randomPosition(pondSize.width - 100),
+          y: randomPosition(pondSize.height - 100),
+        };
+      }),
   });
-
-  useEffect(() => {
-    if (data) {
-      setLeafs(data);
-    }
-  }, [isSuccess]);
 
   const handleOnDrag = (id: string, data: DraggableData) => {
     const newLeafPosition = leafs.map(pos =>
-      pos.id === id
-        ? { id: pos.id, title: pos.title, x: data.x, y: data.y }
-        : pos,
+      pos.id === id ? { ...pos, x: data.x, y: data.y } : pos,
     );
     setLeafs(newLeafPosition);
   };
 
   useEffect(() => {
-    if (data) {
+    if (pondRef.current) {
+      const { width, height } = pondRef.current.getBoundingClientRect();
+      setPondSize({ width, height });
+    }
+  }, [pondRef]);
+
+  useEffect(() => {
+    if (isSuccess && data) {
       setLeafs(data);
     }
-  }, []);
+  }, [isSuccess]);
 
   return (
     <div className="flex h-full flex-col justify-between gap-5">
@@ -54,7 +59,7 @@ export default function MainPage() {
           <span className="text-c0">20</span>개의 메시지가 전달됐어요
         </h1>
       </div>
-      <Pond>
+      <Pond ref={pondRef}>
         {leafs.map(position => (
           <Leaf
             key={position.id}

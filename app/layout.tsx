@@ -3,6 +3,7 @@ import "./globals.css";
 import { ReduxProvider } from "./_store/provider";
 import localFont from "next/font/local";
 import ReactQueryProvider from "./query/ReactQueryProvider";
+import { ModalProvider } from "./_components/common/Modal/ModalContext";
 
 const pretendard = localFont({
   src: "./_fonts/PretendardVariable.woff2",
@@ -23,8 +24,11 @@ export default function RootLayout({
       <link rel="manifest" href="/manifest.json" />
       <body className={pretendard.className}>
         <ReduxProvider>
-          <ReactQueryProvider>{children}</ReactQueryProvider>
+          <ReactQueryProvider>
+            <ModalProvider>{children}</ModalProvider>
+          </ReactQueryProvider>
         </ReduxProvider>
+        <div id="modal" />
       </body>
     </html>
   );
