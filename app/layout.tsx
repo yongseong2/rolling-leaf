@@ -1,14 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ReduxProvider } from "./_store/provider";
-import localFont from "next/font/local";
 import ReactQueryProvider from "./query/ReactQueryProvider";
-import { ModalProvider } from "./_components/common/Modal/ModalContext";
 
-const pretendard = localFont({
-  src: "./_fonts/PretendardVariable.woff2",
-  display: "swap",
-});
+import { ModalProvider } from "./_components/common/Modal/ModalContext";
+import { pretendard } from "./_fonts/fonts";
+
 export const metadata: Metadata = {
   title: "나뭇잎 롤링페이퍼",
   description: "",

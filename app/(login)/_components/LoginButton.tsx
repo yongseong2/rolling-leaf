@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export function LoginButton() {
   return (
-    <Link href={"/main"}>
+    <Link href={`/main/${"user-id"}`}>
       <Image
         className="hover:opacity-60"
         src={"/images/KakaoLoginButtonLogo_small.png"}

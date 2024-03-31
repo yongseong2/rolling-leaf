@@ -8,14 +8,12 @@ import { Modal } from "@/app/_components/common/Modal/Modal";
 import { useModalContext } from "@/app/_components/common/Modal/ModalContext";
 import Icon from "@/app/_components/common/Icon";
 import { colors } from "@/app/_design/colors";
+import { ClientLeaf } from "../_types/main";
+import { nanumHand } from "@/app/_fonts/fonts";
+import { Letter } from "./Letter";
 
 interface Props {
-  leaf: {
-    id: string;
-    x: number;
-    y: number;
-    title: string;
-  };
+  leaf: ClientLeaf;
   onDrag: DraggableEventHandler;
 }
 
@@ -25,17 +23,15 @@ export function Leaf({ leaf, onDrag }: Props) {
   const { openModal } = useModalContext();
 
   const handleDrag = (e: DraggableEvent, data: DraggableData) => {
+    setIsDragging(true);
     onDrag(e, data);
   };
 
   const handleStop = () => {
-    setTimeout(() => {
-      setIsDragging(false);
-    }, 100);
+    setIsDragging(false);
   };
 
   const handleModal = () => {
-    if (isDragging) return;
     openModal(leaf.id);
   };
 
@@ -55,19 +51,18 @@ export function Leaf({ leaf, onDrag }: Props) {
         >
           <div className="flex animate-float items-center justify-center gap-1">
             <div className="h-14 w-10  bg-leaf bg-cover" />
-            <p
+            <button
               onTouchStart={handleModal}
-              className="z-20 flex h-fit items-center gap-1 rounded-lg bg-c2 p-1 text-xs text-c0"
+              onClick={handleModal}
+              className="z-20 flex h-fit items-center gap-1 rounded-lg bg-c2 p-1 text-xs text-c0 active:opacity-60"
             >
               {leaf.title}
               <Icon name="Open" size={12} color={colors.c0} />
-            </p>
+            </button>
           </div>
         </div>
       </Draggable>
-      <Modal id={leaf.id} label="안녕">
-        {leaf.id} 안녕
-      </Modal>
+      <Letter leaf={leaf} />
     </>
   );
 }

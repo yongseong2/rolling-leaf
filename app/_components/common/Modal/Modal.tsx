@@ -27,17 +27,21 @@ export function Modal({ id, label, children }: Props) {
             className="fixed inset-0 z-50 flex items-end justify-center bg-black/20 transition-opacity duration-200"
           >
             <div
-              className={`w-screen rounded-t-lg bg-c0 shadow-lg transition-transform duration-200`}
+              className={`flex h-2/3 w-screen flex-col justify-between rounded-t-lg bg-light-cream shadow-lg transition-transform duration-200`}
             >
               <div className="flex  items-center justify-between p-4">
                 <div className="flex items-center gap-2 text-lg font-bold">
                   {label}
                 </div>
-                <Button onClick={() => closeModal()} className="">
-                  닫기
-                </Button>
               </div>
-              <div className="p-4">{children}</div>
+              <div className="overflow-auto p-4">{children}</div>
+
+              <button
+                className="bg-action py-3 font-bold text-white"
+                onClick={() => closeModal()}
+              >
+                닫기
+              </button>
             </div>
           </div>
         </ModalPortal>
