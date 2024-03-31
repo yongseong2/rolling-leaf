@@ -1,6 +1,6 @@
 "use client";
 import ShareIcon from "@/app/_asset/icons/flowbite/ShareIcon";
-import Button from "@/app/_components/common/Button";
+import Button from "@/app/_components/Button";
 import React, { useEffect, useRef, useState } from "react";
 import { DraggableData } from "react-draggable";
 import { Leaf } from "../../_components/Leaf";

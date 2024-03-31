@@ -6,7 +6,7 @@ import { ReactNode, useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { store, persistor } from "../_store/store";
-import { ModalProvider } from "../_components/common/Modal/ModalContext";
+import { ModalProvider } from "../_components/Modal/ModalContext";
 
 interface Props {
   children: ReactNode;

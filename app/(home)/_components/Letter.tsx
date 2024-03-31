@@ -1,4 +1,4 @@
-import { Modal } from "@/app/_components/common/Modal/Modal";
+import { Modal } from "@/app/_components/Modal";
 import { ClientLeaf } from "../_types";
 import { nanumHand } from "@/app/_fonts";
 

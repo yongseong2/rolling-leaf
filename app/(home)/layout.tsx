@@ -1,4 +1,4 @@
-import { Wrapper } from "../_components/common/Wrapper";
+import { Wrapper } from "../_components/Wrapper";
 
 export default function HomeLayout({
   children,
