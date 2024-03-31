@@ -6,6 +6,8 @@ import Draggable, {
 } from "react-draggable";
 import { Modal } from "@/app/_components/common/Modal/Modal";
 import { useModalContext } from "@/app/_components/common/Modal/ModalContext";
+import Icon from "@/app/_components/common/Icon";
+import { colors } from "@/app/_design/colors";
 
 interface Props {
   leaf: {
@@ -20,21 +22,21 @@ interface Props {
 export function Leaf({ leaf, onDrag }: Props) {
   const nodeRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
-  const [wasDragged, setWasDragged] = useState(false); // 드래그 발생 여부를 추적하는 새로운 상태
   const { openModal } = useModalContext();
 
   const handleDrag = (e: DraggableEvent, data: DraggableData) => {
     onDrag(e, data);
-    setWasDragged(true);
   };
 
   const handleStop = () => {
-    setIsDragging(false);
-    if (wasDragged) {
-      setWasDragged(false);
-    } else {
-      openModal(leaf.id);
-    }
+    setTimeout(() => {
+      setIsDragging(false);
+    }, 100);
+  };
+
+  const handleModal = () => {
+    if (isDragging) return;
+    openModal(leaf.id);
   };
 
   return (
@@ -44,16 +46,23 @@ export function Leaf({ leaf, onDrag }: Props) {
         position={{ x: leaf.x, y: leaf.y }}
         bounds="parent"
         onDrag={handleDrag}
-        onStart={() => setIsDragging(true)}
         onStop={handleStop}
       >
         <div
-          className={`relative z-10 h-28 w-20 cursor-move hover:opacity-60 ${isDragging ? "opacity-60" : ""}`}
+          className={`relative z-10 cursor-move  hover:opacity-60 ${isDragging ? "opacity-60" : ""}`}
           ref={nodeRef}
           style={{ position: "absolute" }}
         >
-          <p className="absolute -right-3 -top-3 z-20 text-c0">{leaf.title}</p>
-          <div className="size-full animate-float bg-leaf bg-cover" />
+          <div className="flex animate-float items-center justify-center gap-1">
+            <div className="h-14 w-10  bg-leaf bg-cover" />
+            <p
+              onTouchStart={handleModal}
+              className="z-20 flex h-fit items-center gap-1 rounded-lg bg-c2 p-1 text-xs text-c0"
+            >
+              {leaf.title}
+              <Icon name="Open" size={12} color={colors.c0} />
+            </p>
+          </div>
         </div>
       </Draggable>
       <Modal id={leaf.id} label="안녕">

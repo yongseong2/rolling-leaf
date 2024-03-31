@@ -6,5 +6,6 @@ import Download from "./Download.svg";
 import Change from "./Change.svg";
 import Profile from "./Profile.svg";
 import Plus from "./Plus.svg";
+import Open from "./Open.svg";
 
-export { Camera, Refresh, Back, Logout, Download, Change, Profile, Plus };
+export { Camera, Refresh, Back, Logout, Download, Change, Profile, Plus, Open };
