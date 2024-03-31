@@ -5,10 +5,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { DraggableData } from "react-draggable";
 import { Leaf } from "../../_components/Leaf";
 import { Pond } from "../../_components/Pond";
-import { ClientLeaf } from "../../_types/main";
+import { ClientLeaf } from "../../_types";
 import { useQuery } from "@tanstack/react-query";
-import { QUERY_KEYS } from "@/app/query/QUERY_KEYS";
-import { getLeafs } from "../../_api/main";
+import { QUERY_KEYS } from "@/app/_query";
+import { getLeafs } from "../../_api";
 
 export default function MainPage({ params }: { params: { userId: string } }) {
   const [leafs, setLeafs] = useState<ClientLeaf[]>([]);

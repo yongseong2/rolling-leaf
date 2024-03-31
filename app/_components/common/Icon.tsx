@@ -1,5 +1,5 @@
 import React from "react";
-import * as Icons from "@/app/_asset/icons/iconIndex";
+import * as Icons from "@/app/_asset/icons/index.ts";
 
 interface IconProps {
   name: keyof typeof Icons;
