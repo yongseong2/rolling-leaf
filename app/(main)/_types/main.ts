@@ -3,4 +3,5 @@ export interface ClientLeaf {
   x: number;
   y: number;
   title: string;
+  content: string;
 }
