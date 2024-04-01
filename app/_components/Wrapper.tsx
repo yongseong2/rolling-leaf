@@ -23,7 +23,9 @@ export const Wrapper = ({ children }: Props) => {
           className="absolute right-5 top-5 flex size-10 items-center justify-center rounded-full bg-c2"
           name="Plus"
           color={colors.c0}
-          onClick={() => router.push(`${routes.create}/${params.userId}`)}
+          onClick={() =>
+            router.push(`${routes["select-leaf"]}/${params.userId}`)
+          }
         />
       )}
       {children}
