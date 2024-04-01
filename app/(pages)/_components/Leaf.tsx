@@ -4,12 +4,10 @@ import Draggable, {
   DraggableData,
   DraggableEventHandler,
 } from "react-draggable";
-import { Modal } from "@/app/_components/common/Modal/Modal";
-import { useModalContext } from "@/app/_components/common/Modal/ModalContext";
-import Icon from "@/app/_components/common/Icon";
+import { useModalContext } from "@/app/_context/ModalContext";
+import Icon from "@/app/_components/Icon";
 import { colors } from "@/app/_design/colors";
-import { ClientLeaf } from "../_types/main";
-import { nanumHand } from "@/app/_fonts/fonts";
+import { ClientLeaf } from "../_types";
 import { Letter } from "./Letter";
 
 interface Props {

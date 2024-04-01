@@ -1,6 +1,6 @@
-import { Wrapper } from "../_components/common/Wrapper";
+import { Wrapper } from "../_components/Wrapper";
 
-export default function MainLayout({
+export default function HomeLayout({
   children,
 }: {
   children: React.ReactNode;

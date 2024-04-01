@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes } from "react";
-import * as Icons from "@/app/_asset/icons/iconIndex";
+import * as Icons from "@/app/_asset/icons/index.ts";
 import Icon from "./Icon";
 import { colors } from "@/app/_design/colors";
 

@@ -1,6 +1,6 @@
-import { Modal } from "@/app/_components/common/Modal/Modal";
-import { ClientLeaf } from "../_types/main";
-import { nanumHand } from "@/app/_fonts/fonts";
+import { Modal } from "@/app/_components/Modal";
+import { ClientLeaf } from "../_types";
+import { nanumHand } from "@/app/_fonts";
 
 interface Props {
   leaf: ClientLeaf;

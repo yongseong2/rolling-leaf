@@ -1,14 +1,14 @@
 "use client";
 import ShareIcon from "@/app/_asset/icons/flowbite/ShareIcon";
-import Button from "@/app/_components/common/Button";
+import Button from "@/app/_components/Button";
 import React, { useEffect, useRef, useState } from "react";
 import { DraggableData } from "react-draggable";
 import { Leaf } from "../../_components/Leaf";
 import { Pond } from "../../_components/Pond";
-import { ClientLeaf } from "../../_types/main";
+import { ClientLeaf } from "../../_types";
 import { useQuery } from "@tanstack/react-query";
-import { QUERY_KEYS } from "@/app/query/QUERY_KEYS";
-import { getLeafs } from "../../_api/main";
+import { QUERY_KEYS } from "@/app/_query";
+import { getLeafs } from "../../_api";
 
 export default function MainPage({ params }: { params: { userId: string } }) {
   const [leafs, setLeafs] = useState<ClientLeaf[]>([]);
@@ -18,7 +18,7 @@ export default function MainPage({ params }: { params: { userId: string } }) {
   const pondRef = useRef<HTMLDivElement>(null);
   const [pondSize, setPondSize] = useState({ width: 0, height: 0 });
   const { data, isSuccess } = useQuery({
-    queryKey: [QUERY_KEYS.GET_LEAF],
+    queryKey: [QUERY_KEYS.GET_LEAF, pondSize],
     queryFn: async () => await getLeafs(),
     select: data =>
       data.map(leaf => {
@@ -28,6 +28,7 @@ export default function MainPage({ params }: { params: { userId: string } }) {
           y: randomPosition(pondSize.height - 100),
         };
       }),
+    enabled: pondSize.width > 0 && pondSize.height > 0,
   });
 
   const handleOnDrag = (id: string, data: DraggableData) => {
@@ -42,7 +43,7 @@ export default function MainPage({ params }: { params: { userId: string } }) {
       const { width, height } = pondRef.current.getBoundingClientRect();
       setPondSize({ width, height });
     }
-  }, [pondRef]);
+  }, [pondRef.current]);
 
   useEffect(() => {
     if (isSuccess && data) {
