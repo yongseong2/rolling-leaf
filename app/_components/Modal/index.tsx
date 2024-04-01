@@ -1,6 +1,6 @@
 import { ReactNode, MouseEvent } from "react";
 import ModalPortal from "./ModalPortal";
-import { useModalContext } from "./ModalContext";
+import { useModalContext } from "../../_context/ModalContext";
 
 interface Props {
   label?: string;
