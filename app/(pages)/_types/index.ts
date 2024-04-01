@@ -4,4 +4,5 @@ export interface ClientLeaf {
   y: number;
   title: string;
   content: string;
+  type: string;
 }
