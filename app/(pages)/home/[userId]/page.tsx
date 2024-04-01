@@ -18,7 +18,7 @@ export default function MainPage({ params }: { params: { userId: string } }) {
   const pondRef = useRef<HTMLDivElement>(null);
   const [pondSize, setPondSize] = useState({ width: 0, height: 0 });
   const { data, isSuccess } = useQuery({
-    queryKey: [QUERY_KEYS.GET_LEAF],
+    queryKey: [QUERY_KEYS.GET_LEAF, pondSize],
     queryFn: async () => await getLeafs(),
     select: data =>
       data.map(leaf => {
@@ -28,6 +28,7 @@ export default function MainPage({ params }: { params: { userId: string } }) {
           y: randomPosition(pondSize.height - 100),
         };
       }),
+    enabled: pondSize.width > 0 && pondSize.height > 0,
   });
 
   const handleOnDrag = (id: string, data: DraggableData) => {
@@ -42,7 +43,7 @@ export default function MainPage({ params }: { params: { userId: string } }) {
       const { width, height } = pondRef.current.getBoundingClientRect();
       setPondSize({ width, height });
     }
-  }, [pondRef]);
+  }, [pondRef.current]);
 
   useEffect(() => {
     if (isSuccess && data) {
