@@ -9,7 +9,7 @@ export default function LoginPage() {
       <div className="relative z-10 flex size-full max-w-screen-md flex-col items-center justify-center">
         <div className="mt-20 flex h-full w-1/2 flex-col items-center justify-center">
           <Image
-            src={"/images/leaf.png"}
+            src={"/images/leaves/leaf0.png"}
             alt="leaf"
             layout="responsive"
             width={0}
