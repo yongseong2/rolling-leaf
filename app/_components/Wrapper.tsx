@@ -11,7 +11,9 @@ export const Wrapper = ({ children }: Props) => {
   return (
     <main className="relative flex h-screen min-h-screen max-w-screen-md flex-col bg-linear-custom-gradient from-c1 to-c2 ">
       <Header />
-      <article className="size-full px-5 pb-4">{children}</article>
+      <article className="size-full overflow-auto px-5 pb-4">
+        {children}
+      </article>
     </main>
   );
 };

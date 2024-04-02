@@ -1,13 +1,15 @@
+import { LeafsType } from "../_types";
+
 interface LeafResponse {
   id: string;
   title: string;
   from: string;
   content: string;
-  type: string;
+  type: LeafsType;
 }
 
 export const getLeafs = async (): Promise<LeafResponse[]> => {
-  const mokData = [
+  const mokData: LeafResponse[] = [
     {
       id: "1",
       title: "풀잎이1",

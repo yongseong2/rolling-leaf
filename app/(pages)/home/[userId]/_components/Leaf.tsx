@@ -7,7 +7,7 @@ import Draggable, {
 import { useModalContext } from "@/app/_context/ModalContext";
 import Icon from "@/app/_components/Icon";
 import { colors } from "@/app/_design/colors";
-import { ClientLeaf } from "../_types";
+import { ClientLeaf } from "../../../_types";
 import { Letter } from "./Letter";
 
 interface Props {

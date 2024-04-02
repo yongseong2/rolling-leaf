@@ -1,7 +1,13 @@
 "use client";
+import Button from "@/app/_components/Button";
+import Icon from "@/app/_components/Icon";
 import { useCreateContext } from "@/app/_context/CreateContext";
+import { colors } from "@/app/_design/colors";
 import { routes } from "@/app/_routes";
-import Link from "next/link";
+import { LeafCard } from "./_components/LeafCard";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { LeafsType } from "@/app/(pages)/_types";
 
 export default function SelectLeafPage({
   params,
@@ -9,11 +15,56 @@ export default function SelectLeafPage({
   params: { userId: string };
 }) {
   const { test } = useCreateContext();
+  const [selectedLeaf, setSelectedLeaf] = useState<LeafsType>("bg-leaf0");
+  const router = useRouter();
+  const leafs: LeafsType[] = [
+    "bg-leaf0",
+    "bg-leaf1",
+    "bg-leaf2",
+    "bg-leaf3",
+    "bg-leaf4",
+    "bg-leaf5",
+    "bg-leaf6",
+    "bg-leaf7",
+    "bg-leaf8",
+    "bg-leaf9",
+    "bg-leaf10",
+    "bg-leaf11",
+    "bg-leaf12",
+  ];
+
+  const handleLeaf = (leaf: LeafsType) => {
+    setSelectedLeaf(leaf);
+  };
+
   return (
-    <div>
-      <Link href={`${routes["write-letter"]}/${params.userId}`}>
-        편지쓰기페이지로 이동
-      </Link>
+    <div className="flex h-full flex-col  justify-between gap-5">
+      <div>
+        <h1 className="text-2xl font-bold text-c0">나뭇잎을 선택해주세요</h1>
+      </div>
+      <div className="flex justify-center overflow-auto">
+        <div className="grid w-full grid-flow-row grid-cols-3 gap-2">
+          {leafs.map(leaf => {
+            return (
+              <LeafCard
+                key={leaf}
+                type={leaf}
+                onLeafClick={handleLeaf}
+                isActive={selectedLeaf === leaf}
+              />
+            );
+          })}
+        </div>
+      </div>
+      <Button
+        onClick={() =>
+          router.push(`${routes["write-letter"]}/${params.userId}`)
+        }
+        className="border-2 border-dashed text-lg font-bold text-white"
+      >
+        편지쓰기
+        <Icon name="Next" color={colors.c0} />
+      </Button>
     </div>
   );
 }

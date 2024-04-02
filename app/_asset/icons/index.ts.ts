@@ -7,5 +7,17 @@ import Change from "./google/Change.svg";
 import Profile from "./google/Profile.svg";
 import Plus from "./google/Plus.svg";
 import Open from "./google/Open.svg";
+import Next from "./google/Next.svg";
 
-export { Camera, Refresh, Back, Logout, Download, Change, Profile, Plus, Open };
+export {
+  Camera,
+  Refresh,
+  Back,
+  Logout,
+  Download,
+  Change,
+  Profile,
+  Plus,
+  Open,
+  Next,
+};
