@@ -13,10 +13,7 @@ export default function LoginPage() {
   }, []);
 
   const handleKakao = async () => {
-    const result = await signIn("kakao", {
-      redirect: true,
-      callbackUrl: "/main",
-    });
+    await signIn("kakao");
   };
 
   return (
