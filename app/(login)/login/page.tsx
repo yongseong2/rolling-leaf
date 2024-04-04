@@ -2,21 +2,19 @@
 import Image from "next/image";
 import { LandingBackground } from "../_components/LandingBackground";
 import { LoginButton } from "../_components/LoginButton";
+import { useEffect } from "react";
+import { getProviders, signIn } from "next-auth/react";
 
 export default function LoginPage() {
-  // useEffect(() => {
-  //   (async () => {
-  //     const res = await getProviders();
-  //     setProviders(res);
-  //   })();
-  // }, []);
+  useEffect(() => {
+    (async () => {
+      await getProviders();
+    })();
+  }, []);
 
-  // const handleKakao = async () => {
-  //   const result = await signIn("kakao", {
-  //     redirect: true,
-  //     callbackUrl: "/main",
-  //   });
-  // };
+  const handleKakao = async () => {
+    await signIn("kakao");
+  };
 
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -38,7 +36,7 @@ export default function LoginPage() {
           <h1 className="font-bold text-dark-text">마음을 전해보세요</h1>
         </div>
         <div className="mt-40">
-          <LoginButton />
+          <LoginButton onClick={() => handleKakao()} />
         </div>
       </div>
     </div>

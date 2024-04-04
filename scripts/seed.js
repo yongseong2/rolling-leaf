@@ -1,46 +1,32 @@
 const { db } = require("@vercel/postgres");
-const {
-  invoices,
-  customers,
-  revenue,
-  users,
-} = require("../app/lib/placeholder-data.js");
-const bcrypt = require("bcrypt");
 
-async function seedUsers(client) {
+async function seedDatabase(client) {
   try {
+    // 확장 기능 활성화
     await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
-    const createTable = await client.sql`
+
+    // 사용자 테이블 생성
+    await client.sql`
       CREATE TABLE IF NOT EXISTS users (
-        id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-        name VARCHAR(255) NOT NULL,
-        email TEXT NOT NULL UNIQUE,
-        password TEXT NOT NULL
+        id VARCHAR PRIMARY KEY,
+        image TEXT NOT NULL,
+        name VARCHAR(255) NOT NULL
       );
     `;
 
-    console.log(`Created "users" table`);
-
-    // Insert data into the "users" table
-    const insertedUsers = await Promise.all(
-      users.map(async user => {
-        const hashedPassword = await bcrypt.hash(user.password, 10);
-        return client.sql`
-        INSERT INTO users (id, name, email, password)
-        VALUES (${user.id}, ${user.name}, ${user.email}, ${hashedPassword})
-        ON CONFLICT (id) DO NOTHING;
-      `;
-      }),
-    );
-
-    console.log(`Seeded ${insertedUsers.length} users`);
-
-    return {
-      createTable,
-      users: insertedUsers,
-    };
+    // 글 테이블 생성
+    await client.sql`
+      CREATE TABLE IF NOT EXISTS leafs (
+        id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+        leaf_type TEXT NOT NULL,
+        title VARCHAR(255) NOT NULL,
+        content TEXT NOT NULL,
+        name VARCHAR(255) NOT NULL,
+        is_anonymous BOOLEAN NOT NULL
+      );
+    `;
   } catch (error) {
-    console.error("Error seeding users:", error);
+    console.error("Error initializing the database:", error);
     throw error;
   }
 }
@@ -48,13 +34,10 @@ async function seedUsers(client) {
 async function main() {
   const client = await db.connect();
 
-  await seedUsers(client);
+  await seedDatabase(client);
   await client.end();
 }
 
 main().catch(err => {
-  console.error(
-    "An error occurred while attempting to seed the database:",
-    err,
-  );
+  console.error("An error occurred while setting up the database:", err);
 });

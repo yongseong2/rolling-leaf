@@ -7,6 +7,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { store, persistor } from "../_store/store";
 import { ModalProvider } from "../_context/ModalContext";
+import { SessionProvider } from "next-auth/react";
 
 interface Props {
   children: ReactNode;
@@ -18,10 +19,12 @@ export default function Providers({ children }: Props) {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <QueryClientProvider client={queryClient}>
-          <ModalProvider>{children}</ModalProvider>
-          <ReactQueryDevtools initialIsOpen={false} />
-        </QueryClientProvider>
+        <SessionProvider>
+          <QueryClientProvider client={queryClient}>
+            <ModalProvider>{children}</ModalProvider>
+            <ReactQueryDevtools initialIsOpen={false} />
+          </QueryClientProvider>
+        </SessionProvider>
       </PersistGate>
     </Provider>
   );
