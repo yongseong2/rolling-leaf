@@ -1,8 +1,23 @@
+"use client";
 import Image from "next/image";
 import { LandingBackground } from "../_components/LandingBackground";
 import { LoginButton } from "../_components/LoginButton";
 
 export default function LoginPage() {
+  // useEffect(() => {
+  //   (async () => {
+  //     const res = await getProviders();
+  //     setProviders(res);
+  //   })();
+  // }, []);
+
+  // const handleKakao = async () => {
+  //   const result = await signIn("kakao", {
+  //     redirect: true,
+  //     callbackUrl: "/main",
+  //   });
+  // };
+
   return (
     <div className="relative min-h-screen overflow-hidden">
       <LandingBackground />

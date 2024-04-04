@@ -1,5 +1,5 @@
 import { Modal } from "@/app/_components/Modal";
-import { ClientLeaf } from "../_types";
+import { ClientLeaf } from "../../../_types";
 import { nanumHand } from "@/app/_fonts";
 
 interface Props {

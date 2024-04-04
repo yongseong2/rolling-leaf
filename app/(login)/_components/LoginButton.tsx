@@ -1,10 +1,11 @@
-import { routes } from "@/app/_routes";
 import Image from "next/image";
-import Link from "next/link";
+import { ButtonHTMLAttributes } from "react";
 
-export function LoginButton() {
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {}
+
+export function LoginButton({ ...rest }: Props) {
   return (
-    <Link href={`${routes.home}/${"user-id"}`}>
+    <button {...rest}>
       <Image
         className="hover:opacity-60"
         src={"/images/KakaoLoginButtonLogo_small.png"}
@@ -12,6 +13,6 @@ export function LoginButton() {
         width={200}
         height={200}
       />
-    </Link>
+    </button>
   );
 }
