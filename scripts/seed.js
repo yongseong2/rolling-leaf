@@ -8,20 +8,20 @@ async function seedDatabase(client) {
     // 사용자 테이블 생성
     await client.sql`
       CREATE TABLE IF NOT EXISTS users (
-        id UUID PRIMARY KEY,
-        profile_pic_url TEXT NOT NULL,
-        nickname VARCHAR(255) NOT NULL
+        id VARCHAR PRIMARY KEY,
+        image TEXT NOT NULL,
+        name VARCHAR(255) NOT NULL
       );
     `;
 
     // 글 테이블 생성
     await client.sql`
-      CREATE TABLE IF NOT EXISTS posts (
+      CREATE TABLE IF NOT EXISTS leafs (
         id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-        leaf TEXT NOT NULL,
+        leaf_type TEXT NOT NULL,
         title VARCHAR(255) NOT NULL,
         content TEXT NOT NULL,
-        profile_nickname VARCHAR(255) NOT NULL,
+        name VARCHAR(255) NOT NULL,
         is_anonymous BOOLEAN NOT NULL
       );
     `;
