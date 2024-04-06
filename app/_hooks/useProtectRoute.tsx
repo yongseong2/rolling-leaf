@@ -10,7 +10,7 @@ export function useProtectRoute() {
     if (session.status === "authenticated") {
       router.push(`/home/${session.data.user?.id}`);
     } else if (session.status === "unauthenticated") {
-      router.push("login");
+      router.push("/login");
     }
   }, [session.status, router]);
 }
