@@ -1,4 +1,7 @@
-import { NextApiRequest } from "next";
+import { NextApiRequest, NextApiResponse } from "next";
+
+export type APIRequest = Request & NextApiRequest;
+export type APIResponse = Response & NextApiResponse;
 
 export async function readRequestBody(
   request: NextApiRequest,

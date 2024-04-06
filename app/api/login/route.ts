@@ -1,9 +1,7 @@
 import { upsertUser } from "@/lib/services/auth";
-import type { NextApiRequest } from "next";
-import { readRequestBody } from "../_config";
+import { APIRequest, readRequestBody } from "../_config";
 
-export async function POST(req: NextApiRequest) {
-  console.log(req);
+export async function POST(req: APIRequest) {
   const body = await readRequestBody(req);
   const { userId, userName, userImage } = JSON.parse(body);
   try {
