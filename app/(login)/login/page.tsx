@@ -2,18 +2,14 @@
 import Image from "next/image";
 import { LandingBackground } from "../_components/LandingBackground";
 import { LoginButton } from "../_components/LoginButton";
-import { useEffect } from "react";
-import { getProviders, signIn } from "next-auth/react";
+import { signIn } from "next-auth/react";
 
 export default function LoginPage() {
-  useEffect(() => {
-    (async () => {
-      await getProviders();
-    })();
-  }, []);
-
   const handleKakao = async () => {
-    await signIn("kakao");
+    await signIn("kakao", {
+      redirect: true,
+      callbackUrl: "/oauth",
+    });
   };
 
   return (
