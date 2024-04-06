@@ -1,12 +1,12 @@
 "use client";
-import { Wrapper } from "../_components/Wrapper";
+
 import { useProtectRoute } from "../_hooks/useProtectRoute";
 
-export default function HomeLayout({
+export default function AuthLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   useProtectRoute();
-  return <Wrapper>{children}</Wrapper>;
+  return <>{children}</>;
 }
