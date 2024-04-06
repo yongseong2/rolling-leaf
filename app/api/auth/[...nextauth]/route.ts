@@ -1,4 +1,4 @@
-import { db } from "@vercel/postgres";
+import { login } from "@/app/_axios/login";
 import NextAuth from "next-auth/next";
 import KakaoProvider from "next-auth/providers/kakao";
 
@@ -12,18 +12,7 @@ const handler = NextAuth({
   callbacks: {
     async jwt({ token, account, user }) {
       if (account && user) {
-        const userId = user.id;
-        const name = user.name;
-        const image = user.image;
-        await db.query(
-          `
-          INSERT INTO users (id, name, image)
-          VALUES ($1, $2, $3)
-          ON CONFLICT (id) DO
-          UPDATE SET name = $2, image = $3
-        `,
-          [userId.toString(), name, image],
-        );
+        await login(user.id, user.name ?? "", user.image ?? "");
       }
 
       return { ...token, ...user };

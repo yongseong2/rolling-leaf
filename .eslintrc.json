@@ -26,7 +26,8 @@
         "endOfLine": "auto"
       }
     ],
-    "@typescript-eslint/no-unused-vars": "off"
+    "@typescript-eslint/no-unused-vars": "off",
+    "import/no-anonymous-default-export": "off"
   },
   "ignorePatterns": ["next.config.js", "seed.js"]
 }

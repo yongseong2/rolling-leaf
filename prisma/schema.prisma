@@ -1,0 +1,28 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+model User {
+  id    String @id @default(uuid())
+  image String
+  name  String
+  leafs Leaf[] // `Leaf` 모델과의 일대다 관계를 나타냅니다.
+}
+
+model Leaf {
+  id          String   @id @default(uuid())
+  title       String
+  content     String
+  name        String
+  isAnonymous Boolean
+  leafType    String   // `leafType` 필드를 추가합니다.
+  userId      String   // 외래 키로서 `User` 모델의 `id`를 참조합니다.
+  user        User     @relation(fields: [userId], references: [id]) // `User` 모델과의 관계를 설정합니다.
+}
