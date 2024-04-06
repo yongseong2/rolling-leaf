@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:3000/";
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 // token이 필요없는 axios 인스턴스
 const http = axios.create({
