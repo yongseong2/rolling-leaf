@@ -1,6 +1,4 @@
 import { upsertUser } from "@/app/_services/auth";
-import prisma from "@/lib/prisma";
-import { db } from "@vercel/postgres";
 import NextAuth from "next-auth/next";
 import KakaoProvider from "next-auth/providers/kakao";
 
