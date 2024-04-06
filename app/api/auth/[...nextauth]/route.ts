@@ -1,4 +1,4 @@
-import { upsertUser } from "@/app/_services/auth";
+import { login } from "@/app/_axios/login";
 import NextAuth from "next-auth/next";
 import KakaoProvider from "next-auth/providers/kakao";
 
@@ -12,7 +12,7 @@ const handler = NextAuth({
   callbacks: {
     async jwt({ token, account, user }) {
       if (account && user) {
-        await upsertUser(user.id, user.name ?? "", user.image ?? "");
+        await login(user.id, user.name ?? "", user.image ?? "");
       }
 
       return { ...token, ...user };
