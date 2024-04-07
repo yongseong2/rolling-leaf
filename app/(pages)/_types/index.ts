@@ -4,6 +4,7 @@ export interface ClientLeaf {
   y: number;
   title: string;
   content: string;
+  authorName: string;
   leafType: LeafsType;
 }
 
