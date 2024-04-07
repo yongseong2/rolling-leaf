@@ -20,7 +20,6 @@ model Leaf {
   id          String   @id @default(uuid())
   title       String
   content     String
-  name        String
   isAnonymous Boolean
   leafType    String   // `leafType` 필드를 추가합니다.
   userId      String   // 외래 키로서 `User` 모델의 `id`를 참조합니다.
