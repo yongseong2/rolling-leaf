@@ -4,9 +4,13 @@ import { LeafsType } from "../(pages)/_types";
 import { LeafRequestType } from "../(pages)/(create)/_api/post";
 
 interface CreateState {
-  leafForm: LeafRequestType;
+  state: { leafForm: LeafRequestType };
   action: {
     handleLeafType: (leaf: LeafsType) => void;
+    handleTitleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    handleContentChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+    handleIsAnonymousChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    handleSubmit: () => void;
   };
 }
 
@@ -20,19 +24,37 @@ export function CreateProvider({ children }: { children: ReactNode }) {
     leafType: "bg-leaf0",
   });
 
-  const handleLeafType = (leaf: LeafsType) => {
-    setLeafForm(currentForm => ({
-      ...currentForm,
-      leafType: leaf,
-    }));
+  const handleLeafTypeChange = (leaf: LeafsType) => {
+    setLeafForm({ ...leafForm, leafType: leaf });
   };
 
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setLeafForm({ ...leafForm, title: e.target.value });
+  };
+
+  const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setLeafForm({ ...leafForm, content: e.target.value });
+  };
+
+  const handleIsAnonymousChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setLeafForm({ ...leafForm, isAnonymous: e.target.checked });
+  };
+
+  const handleSubmit = () => {
+    console.log(leafForm);
+  };
   return (
     <CreateContext.Provider
       value={{
-        leafForm,
+        state: {
+          leafForm,
+        },
         action: {
-          handleLeafType,
+          handleLeafType: handleLeafTypeChange,
+          handleTitleChange,
+          handleContentChange,
+          handleIsAnonymousChange,
+          handleSubmit,
         },
       }}
     >
