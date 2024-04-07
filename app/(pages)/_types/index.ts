@@ -4,7 +4,7 @@ export interface ClientLeaf {
   y: number;
   title: string;
   content: string;
-  type: LeafsType;
+  leafType: LeafsType;
 }
 
 export type LeafsType =
