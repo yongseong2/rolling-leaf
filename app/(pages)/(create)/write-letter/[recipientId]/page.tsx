@@ -6,6 +6,12 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createLeaf } from "../../_api/post";
 import { useRouter } from "next/navigation";
 import { QUERY_KEYS } from "@/app/_query";
+import { nanumHand } from "@/app/_fonts";
+import Icon from "@/app/_components/Icon";
+import { colors } from "@/app/_design/colors";
+import { LetterTitle } from "../../_components/LetterTitle";
+import { LetterTextarea } from "../../_components/LetterTextarea";
+import { LetterCheckbox } from "../../_components/LetterCheckbox";
 
 export default function WriterLetterPage({
   params,
@@ -32,35 +38,29 @@ export default function WriterLetterPage({
   const handleSubmit = () => {
     mutation.mutate();
   };
+
   return (
     <div className="flex h-full flex-col justify-between gap-5">
       <CreateTitle label="편지를 작성해주세요" />
-      <label>
-        <input
-          type="checkbox"
-          checked={leafForm.isAnonymous}
-          onChange={action.handleIsAnonymousChange}
-        />
-        익명으로 작성
-      </label>
-      <input
-        className="w-full"
+      <LetterTitle
         value={leafForm.title}
         onChange={action.handleTitleChange}
         placeholder="제목"
       />
-      <textarea
-        className="w-full"
+      <LetterTextarea
         value={leafForm.content}
         onChange={action.handleContentChange}
         placeholder="내용"
       />
-
+      <LetterCheckbox
+        isChecked={leafForm.isAnonymous}
+        onChange={action.handleIsAnonymousChange}
+      />
       <Button
         onClick={() => handleSubmit()}
         className="border-2 border-dashed text-lg font-bold text-white"
       >
-        작성 완료
+        편지 보내기
       </Button>
     </div>
   );
