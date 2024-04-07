@@ -3,12 +3,14 @@ import { colors } from "../_design/colors";
 import IconButton from "./IconButton";
 import { routes } from "../_routes";
 import { useParams, usePathname, useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 export function Header() {
   const router = useRouter();
   const pathname = usePathname();
   const isHome = pathname.startsWith("/home");
   const params = useParams();
+  const { data: session } = useSession();
   return (
     <header className="flex w-full items-center justify-between px-5 py-4">
       {!isHome ? (
@@ -22,7 +24,7 @@ export function Header() {
       ) : (
         <div></div>
       )}
-      {isHome ? (
+      {session && isHome ? (
         <IconButton
           className="flex size-8 items-center justify-center rounded-full bg-c2"
           name="Plus"
@@ -32,7 +34,12 @@ export function Header() {
           }
         />
       ) : (
-        <div className="size-8"></div>
+        <button
+          onClick={() => router.push("/login")}
+          className="rounded-md bg-c2 p-1 text-sm text-c0"
+        >
+          로그인
+        </button>
       )}
     </header>
   );

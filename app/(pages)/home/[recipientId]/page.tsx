@@ -63,11 +63,11 @@ export default function MainPage({
     <div className="flex h-full flex-col justify-between gap-5">
       <div className="">
         <h1 className="text-xl text-c0">
-          {apiRecipientName?.recipientName}님에게
+          {apiRecipientName ? apiRecipientName.recipientName : "풀잎이"}님에게
         </h1>
         <h1 className="text-2xl font-bold text-dark-text">
-          <span className="text-c0">{apiLeafs && apiLeafs.counts} </span>개의
-          메시지가 전달됐어요
+          <span className="text-c0">{apiLeafs ? apiLeafs.counts : "0"} </span>
+          개의 메시지가 전달됐어요
         </h1>
       </div>
       <Pond ref={pondRef}>

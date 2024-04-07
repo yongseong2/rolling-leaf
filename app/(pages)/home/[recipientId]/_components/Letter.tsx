@@ -8,7 +8,7 @@ interface Props {
 
 export function Letter({ leaf }: Props) {
   return (
-    <Modal id={leaf.id} label={leaf.title}>
+    <Modal id={leaf.id} label={leaf.title} subLabel={leaf.authorName}>
       <div
         className={`whitespace-pre-line text-center text-lg font-bold ${nanumHand.className}`}
       >
