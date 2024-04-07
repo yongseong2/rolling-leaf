@@ -5,7 +5,7 @@ interface LeafResponse {
   leaves: {
     id: string;
     title: string;
-    userName: string;
+    authorName: string;
     content: string;
     leafType: LeafsType;
   }[];
