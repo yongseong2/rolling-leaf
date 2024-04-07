@@ -10,7 +10,6 @@ interface CreateState {
     handleTitleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     handleContentChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
     handleIsAnonymousChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    handleSubmit: () => void;
   };
 }
 
@@ -40,10 +39,6 @@ export function CreateProvider({ children }: { children: ReactNode }) {
     setLeafForm({ ...leafForm, isAnonymous: e.target.checked });
   };
 
-  const handleSubmit = async () => {
-    console.log(leafForm);
-    await createLeaf(leafForm);
-  };
   return (
     <CreateContext.Provider
       value={{
@@ -55,7 +50,6 @@ export function CreateProvider({ children }: { children: ReactNode }) {
           handleTitleChange,
           handleContentChange,
           handleIsAnonymousChange,
-          handleSubmit,
         },
       }}
     >

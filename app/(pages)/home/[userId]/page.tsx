@@ -8,7 +8,8 @@ import { Pond } from "./_components/Pond";
 import { ClientLeaf } from "../../_types";
 import { useQuery } from "@tanstack/react-query";
 import { QUERY_KEYS } from "@/app/_query";
-import { getLeafs } from "../../(create)/_api/get";
+import { getLeafs } from "./_api/get";
+import { useSession } from "next-auth/react";
 
 export default function MainPage({ params }: { params: { userId: string } }) {
   const [leafs, setLeafs] = useState<ClientLeaf[]>([]);
@@ -18,16 +19,16 @@ export default function MainPage({ params }: { params: { userId: string } }) {
   const pondRef = useRef<HTMLDivElement>(null);
   const [pondSize, setPondSize] = useState({ width: 0, height: 0 });
   const { data, isSuccess } = useQuery({
-    queryKey: [QUERY_KEYS.GET_LEAF, pondSize],
-    queryFn: async () => await getLeafs(),
-    select: data =>
-      data.map(leaf => {
-        return {
-          ...leaf,
-          x: randomPosition(pondSize.width - 100),
-          y: randomPosition(pondSize.height - 100),
-        };
-      }),
+    queryKey: [QUERY_KEYS.GET_LEAF, pondSize, params.userId],
+    queryFn: async () => await getLeafs(params.userId),
+    select: data => ({
+      leaves: data.leaves.map(leaf => ({
+        ...leaf,
+        x: randomPosition(pondSize.width - 100),
+        y: randomPosition(pondSize.height - 100),
+      })),
+      counts: data.counts,
+    }),
     enabled: pondSize.width > 0 && pondSize.height > 0,
   });
 
@@ -47,16 +48,19 @@ export default function MainPage({ params }: { params: { userId: string } }) {
 
   useEffect(() => {
     if (isSuccess && data) {
-      setLeafs(data);
+      setLeafs(data.leaves);
     }
   }, [isSuccess]);
+
+  const { data: session } = useSession();
 
   return (
     <div className="flex h-full flex-col justify-between gap-5">
       <div className="">
-        <h1 className="text-xl text-c0">성용님에게</h1>
+        <h1 className="text-xl text-c0">{session?.user.name}님에게</h1>
         <h1 className="text-2xl font-bold text-dark-text">
-          <span className="text-c0">20</span>개의 메시지가 전달됐어요
+          <span className="text-c0">{data && data.counts} </span>개의 메시지가
+          전달됐어요
         </h1>
       </div>
       <Pond ref={pondRef}>

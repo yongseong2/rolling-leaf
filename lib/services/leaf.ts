@@ -25,3 +25,18 @@ export async function createLeaf({
     },
   });
 }
+
+export async function getLeavesByUserId(userId: string) {
+  return await prisma.leaf.findMany({
+    where: {
+      userId: userId,
+    },
+    include: {
+      user: {
+        select: {
+          name: true,
+        },
+      },
+    },
+  });
+}

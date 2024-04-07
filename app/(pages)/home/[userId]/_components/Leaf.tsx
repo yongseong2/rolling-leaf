@@ -48,7 +48,7 @@ export function Leaf({ leaf, onDrag }: Props) {
           style={{ position: "absolute" }}
         >
           <div className="flex animate-float items-center justify-center gap-1">
-            <div className={`size-14 ${leaf.type} bg-cover`} />
+            <div className={`size-14 ${leaf.leafType} bg-cover`} />
             <button
               onTouchStart={handleModal}
               onClick={handleModal}
