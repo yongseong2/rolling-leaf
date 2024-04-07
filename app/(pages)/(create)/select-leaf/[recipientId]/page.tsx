@@ -12,7 +12,7 @@ import { CreateTitle } from "../../_components/CreateTitle";
 export default function SelectLeafPage({
   params,
 }: {
-  params: { userId: string };
+  params: { recipientId: string };
 }) {
   const { state, action } = useCreateContext();
   const router = useRouter();
@@ -52,7 +52,7 @@ export default function SelectLeafPage({
       </div>
       <Button
         onClick={() =>
-          router.push(`${routes["write-letter"]}/${params.userId}`)
+          router.push(`${routes["write-letter"]}/${params.recipientId}`)
         }
         className="border-2 border-dashed text-lg font-bold text-white"
       >

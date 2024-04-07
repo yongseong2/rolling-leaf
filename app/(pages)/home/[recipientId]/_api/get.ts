@@ -12,7 +12,7 @@ interface LeafResponse {
   counts: number;
 }
 
-export const getLeafs = async (userId: string): Promise<LeafResponse> => {
-  const res = await http.get(`/api/leaf?userId=${userId}`);
+export const getLeafs = async (recipientId: string): Promise<LeafResponse> => {
+  const res = await http.get(`/api/leaf?recipientId=${recipientId}`);
   return res.data;
 };

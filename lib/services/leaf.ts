@@ -5,7 +5,8 @@ export interface CreateLeafType {
   content: string;
   isAnonymous: boolean;
   leafType: string;
-  userId: string;
+  authorId: string;
+  recipientId: string;
 }
 
 export async function createLeaf({
@@ -13,7 +14,8 @@ export async function createLeaf({
   content,
   isAnonymous,
   leafType,
-  userId,
+  authorId,
+  recipientId,
 }: CreateLeafType) {
   return await prisma.leaf.create({
     data: {
@@ -21,15 +23,16 @@ export async function createLeaf({
       content: content,
       isAnonymous: isAnonymous,
       leafType: leafType,
-      userId: userId,
+      authorId: authorId,
+      recipientId: recipientId,
     },
   });
 }
 
-export async function getLeavesByUserId(userId: string) {
+export async function getLeavesByRecipientId(recipientId: string) {
   return await prisma.leaf.findMany({
     where: {
-      userId: userId,
+      recipientId: recipientId,
     },
     include: {
       user: {

@@ -11,7 +11,12 @@ import { QUERY_KEYS } from "@/app/_query";
 import { getLeafs } from "./_api/get";
 import { useSession } from "next-auth/react";
 
-export default function MainPage({ params }: { params: { userId: string } }) {
+export default function MainPage({
+  params,
+}: {
+  params: { recipientId: string };
+}) {
+  const { data: session } = useSession();
   const [leafs, setLeafs] = useState<ClientLeaf[]>([]);
   const randomPosition = (max: number) => {
     return Math.floor(Math.random() * max);
@@ -19,8 +24,8 @@ export default function MainPage({ params }: { params: { userId: string } }) {
   const pondRef = useRef<HTMLDivElement>(null);
   const [pondSize, setPondSize] = useState({ width: 0, height: 0 });
   const { data, isSuccess } = useQuery({
-    queryKey: [QUERY_KEYS.GET_LEAF, pondSize, params.userId],
-    queryFn: async () => await getLeafs(params.userId),
+    queryKey: [QUERY_KEYS.GET_LEAF, pondSize, params.recipientId],
+    queryFn: async () => await getLeafs(params.recipientId),
     select: data => ({
       leaves: data.leaves.map(leaf => ({
         ...leaf,
@@ -50,9 +55,7 @@ export default function MainPage({ params }: { params: { userId: string } }) {
     if (isSuccess && data) {
       setLeafs(data.leaves);
     }
-  }, [isSuccess]);
-
-  const { data: session } = useSession();
+  }, [isSuccess, data?.counts]);
 
   return (
     <div className="flex h-full flex-col justify-between gap-5">
