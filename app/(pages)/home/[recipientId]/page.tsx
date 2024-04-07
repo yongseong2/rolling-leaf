@@ -1,6 +1,4 @@
 "use client";
-import ShareIcon from "@/app/_asset/icons/flowbite/ShareIcon";
-import Button from "@/app/_components/Button";
 import React, { useEffect, useRef, useState } from "react";
 import { DraggableData } from "react-draggable";
 import { Leaf } from "./_components/Leaf";
@@ -9,7 +7,6 @@ import { ClientLeaf } from "../../_types";
 import { useQuery } from "@tanstack/react-query";
 import { QUERY_KEYS } from "@/app/_query";
 import { getLeafs, getRecipientName } from "./_api";
-import { useSession } from "next-auth/react";
 import { ShareButton } from "./_components/ShareButton";
 
 export default function MainPage({
@@ -82,7 +79,10 @@ export default function MainPage({
           />
         ))}
       </Pond>
-      <ShareButton recipientName={apiRecipientName?.recipientName} />
+      <ShareButton
+        recipientName={apiRecipientName?.recipientName}
+        recipientId={params.recipientId}
+      />
     </div>
   );
 }
