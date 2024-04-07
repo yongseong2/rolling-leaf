@@ -8,7 +8,7 @@ import { Pond } from "./_components/Pond";
 import { ClientLeaf } from "../../_types";
 import { useQuery } from "@tanstack/react-query";
 import { QUERY_KEYS } from "@/app/_query";
-import { getLeafs } from "../../_api";
+import { getLeafs } from "../../(create)/_api/get";
 
 export default function MainPage({ params }: { params: { userId: string } }) {
   const [leafs, setLeafs] = useState<ClientLeaf[]>([]);

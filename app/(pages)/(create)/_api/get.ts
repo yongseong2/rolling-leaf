@@ -1,4 +1,4 @@
-import { LeafsType } from "../_types";
+import { LeafsType } from "../../_types";
 
 interface LeafResponse {
   id: string;

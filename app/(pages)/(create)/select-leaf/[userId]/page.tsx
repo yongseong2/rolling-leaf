@@ -4,18 +4,17 @@ import Icon from "@/app/_components/Icon";
 import { useCreateContext } from "@/app/_context/CreateContext";
 import { colors } from "@/app/_design/colors";
 import { routes } from "@/app/_routes";
-import { LeafCard } from "./_components/LeafCard";
+import { LeafCard } from "../../_components/LeafCard";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import { LeafsType } from "@/app/(pages)/_types";
+import { CreateTitle } from "../../_components/CreateTitle";
 
 export default function SelectLeafPage({
   params,
 }: {
   params: { userId: string };
 }) {
-  const { test } = useCreateContext();
-  const [selectedLeaf, setSelectedLeaf] = useState<LeafsType>("bg-leaf0");
+  const { leafForm, action } = useCreateContext();
   const router = useRouter();
   const leafs: LeafsType[] = [
     "bg-leaf0",
@@ -33,15 +32,9 @@ export default function SelectLeafPage({
     "bg-leaf12",
   ];
 
-  const handleLeaf = (leaf: LeafsType) => {
-    setSelectedLeaf(leaf);
-  };
-
   return (
     <div className="flex h-full flex-col  justify-between gap-5">
-      <div>
-        <h1 className="text-2xl font-bold text-c0">나뭇잎을 선택해주세요</h1>
-      </div>
+      <CreateTitle label="나뭇잎을 선택해주세요" />
       <div className="flex justify-center overflow-auto">
         <div className="grid w-full grid-flow-row grid-cols-3 gap-2">
           {leafs.map(leaf => {
@@ -49,8 +42,8 @@ export default function SelectLeafPage({
               <LeafCard
                 key={leaf}
                 type={leaf}
-                onLeafClick={handleLeaf}
-                isActive={selectedLeaf === leaf}
+                onLeafClick={action.handleLeafType}
+                isActive={leafForm.leafType === leaf}
               />
             );
           })}

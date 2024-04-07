@@ -1,10 +1,12 @@
 "use client";
 import { ReactNode, createContext, useContext, useState } from "react";
-import { LeafRequestType } from "../(pages)/(create)/_api";
+import { LeafsType } from "../(pages)/_types";
+import { LeafRequestType } from "../(pages)/(create)/_api/post";
 
 interface CreateState {
-  state: {
-    leafForm: LeafRequestType;
+  leafForm: LeafRequestType;
+  action: {
+    handleLeafType: (leaf: LeafsType) => void;
   };
 }
 
@@ -15,14 +17,22 @@ export function CreateProvider({ children }: { children: ReactNode }) {
     title: "",
     content: "",
     isAnonymous: false,
-    leafType: "",
+    leafType: "bg-leaf0",
   });
+
+  const handleLeafType = (leaf: LeafsType) => {
+    setLeafForm(currentForm => ({
+      ...currentForm,
+      leafType: leaf,
+    }));
+  };
 
   return (
     <CreateContext.Provider
       value={{
-        state: {
-          leafForm: leafForm,
+        leafForm,
+        action: {
+          handleLeafType,
         },
       }}
     >
