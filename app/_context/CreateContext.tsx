@@ -9,7 +9,7 @@ interface CreateState {
     handleLeafType: (leaf: LeafsType) => void;
     handleTitleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     handleContentChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-    handleIsAnonymousChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    handleIsAnonymousChange: () => void;
   };
 }
 
@@ -35,8 +35,8 @@ export function CreateProvider({ children }: { children: ReactNode }) {
     setLeafForm({ ...leafForm, content: e.target.value });
   };
 
-  const handleIsAnonymousChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setLeafForm({ ...leafForm, isAnonymous: e.target.checked });
+  const handleIsAnonymousChange = () => {
+    setLeafForm({ ...leafForm, isAnonymous: !leafForm.isAnonymous });
   };
 
   return (

@@ -7,7 +7,10 @@ export interface LeafRequestType {
   isAnonymous: boolean;
   leafType: LeafsType;
 }
-export async function createLeaf(leafForm: LeafRequestType) {
-  const res = await http.post("/api/leaf", leafForm);
+export async function createLeaf(
+  recipientId: string,
+  leafForm: LeafRequestType,
+) {
+  const res = await http.post(`/api/leaf?recipientId=${recipientId}`, leafForm);
   return res.data;
 }

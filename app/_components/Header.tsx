@@ -28,7 +28,7 @@ export function Header() {
           name="Plus"
           color={colors.c0}
           onClick={() =>
-            router.push(`${routes["select-leaf"]}/${params.userId}`)
+            router.push(`${routes["select-leaf"]}/${params.recipientId}`)
           }
         />
       ) : (

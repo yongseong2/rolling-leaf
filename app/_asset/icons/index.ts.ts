@@ -8,6 +8,7 @@ import Profile from "./google/Profile.svg";
 import Plus from "./google/Plus.svg";
 import Open from "./google/Open.svg";
 import Next from "./google/Next.svg";
+import Check from "./google/Check.svg";
 
 export {
   Camera,
@@ -20,4 +21,5 @@ export {
   Plus,
   Open,
   Next,
+  Check,
 };

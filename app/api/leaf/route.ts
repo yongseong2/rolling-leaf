@@ -1,9 +1,11 @@
 import { APIRequest, readRequestBody } from "../_config";
-import { createLeaf, getLeavesByUserId } from "@/lib/services/leaf";
+import { createLeaf, getLeavesByRecipientId } from "@/lib/services/leaf";
 import { getToken } from "next-auth/jwt";
 
 export async function POST(req: APIRequest) {
   const session = await getToken({ req });
+  const url = new URL(req.url);
+  const recipientId = url.searchParams.get("recipientId");
 
   if (!session) {
     return new Response(JSON.stringify({ message: "Unauthorized" }), {
@@ -11,7 +13,17 @@ export async function POST(req: APIRequest) {
       headers: { "Content-Type": "application/json" },
     });
   }
-  const userId = session.id as string;
+
+  if (!recipientId) {
+    return new Response(
+      JSON.stringify({ message: "Recipient Id is required" }),
+      {
+        status: 400,
+        headers: { "Content-Type": "application/json" },
+      },
+    );
+  }
+  const authorId = session.id as string;
 
   const body = await readRequestBody(req);
   const { title, content, isAnonymous, leafType } = JSON.parse(body);
@@ -22,7 +34,8 @@ export async function POST(req: APIRequest) {
       content,
       isAnonymous,
       leafType,
-      userId,
+      authorId,
+      recipientId,
     });
     return new Response(JSON.stringify({ message: "success" }), {
       status: 200,
@@ -45,23 +58,26 @@ export async function POST(req: APIRequest) {
 export async function GET(req: APIRequest) {
   try {
     const url = new URL(req.url);
-    const userId = url.searchParams.get("userId");
+    const recipientId = url.searchParams.get("recipientId");
 
-    if (!userId) {
-      return new Response(JSON.stringify({ message: "UserId is required" }), {
-        status: 400,
-        headers: { "Content-Type": "application/json" },
-      });
+    if (!recipientId) {
+      return new Response(
+        JSON.stringify({ message: "Recipient Id is required" }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json" },
+        },
+      );
     }
 
-    const leaves = await getLeavesByUserId(userId);
+    const leaves = await getLeavesByRecipientId(recipientId);
     const leavesFormatted = leaves.map(leaf => ({
       id: leaf.id,
       title: leaf.title,
       content: leaf.content,
       isAnonymous: leaf.isAnonymous,
       leafType: leaf.leafType,
-      userName: leaf.user.name,
+      authorName: leaf.isAnonymous ? "익명" : leaf.user.name,
     }));
 
     return new Response(
