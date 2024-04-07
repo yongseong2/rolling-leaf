@@ -1,17 +1,33 @@
 "use client";
 import { ReactNode, createContext, useContext, useState } from "react";
+import { LeafRequestType } from "../(pages)/(create)/_api";
 
 interface CreateState {
-  test: string;
+  state: {
+    leafForm: LeafRequestType;
+  };
 }
 
 const CreateContext = createContext<CreateState>({} as CreateState);
 
 export function CreateProvider({ children }: { children: ReactNode }) {
-  const [test, setTest] = useState("안녕");
+  const [leafForm, setLeafForm] = useState<LeafRequestType>({
+    title: "",
+    content: "",
+    isAnonymous: false,
+    leafType: "",
+  });
 
   return (
-    <CreateContext.Provider value={{ test }}>{children}</CreateContext.Provider>
+    <CreateContext.Provider
+      value={{
+        state: {
+          leafForm: leafForm,
+        },
+      }}
+    >
+      {children}
+    </CreateContext.Provider>
   );
 }
 
