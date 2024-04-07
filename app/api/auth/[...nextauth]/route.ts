@@ -1,4 +1,4 @@
-import { login } from "@/app/_axios/login";
+import { login } from "@/app/(pages)/home/[userId]/_api";
 import NextAuth from "next-auth/next";
 import KakaoProvider from "next-auth/providers/kakao";
 

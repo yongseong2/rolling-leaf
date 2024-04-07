@@ -1,4 +1,4 @@
-import { http } from ".";
+import { http } from "../../../../_axios";
 
 export async function login(
   userId: string,
