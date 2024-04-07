@@ -1,7 +1,7 @@
 "use client";
 import { ReactNode, createContext, useContext, useState } from "react";
 import { LeafsType } from "../(pages)/_types";
-import { LeafRequestType } from "../(pages)/(create)/_api/post";
+import { LeafRequestType, createLeaf } from "../(pages)/(create)/_api/post";
 
 interface CreateState {
   state: { leafForm: LeafRequestType };
@@ -40,8 +40,9 @@ export function CreateProvider({ children }: { children: ReactNode }) {
     setLeafForm({ ...leafForm, isAnonymous: e.target.checked });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     console.log(leafForm);
+    await createLeaf(leafForm);
   };
   return (
     <CreateContext.Provider

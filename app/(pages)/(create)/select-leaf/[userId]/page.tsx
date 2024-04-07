@@ -14,8 +14,9 @@ export default function SelectLeafPage({
 }: {
   params: { userId: string };
 }) {
-  const { leafForm, action } = useCreateContext();
+  const { state, action } = useCreateContext();
   const router = useRouter();
+  const { leafForm } = state;
   const leafs: LeafsType[] = [
     "bg-leaf0",
     "bg-leaf1",

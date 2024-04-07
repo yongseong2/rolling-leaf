@@ -1,4 +1,4 @@
-import { login } from "@/app/(pages)/home/[userId]/_api";
+import { login } from "@/app/(login)/_api";
 import NextAuth from "next-auth/next";
 import KakaoProvider from "next-auth/providers/kakao";
 
