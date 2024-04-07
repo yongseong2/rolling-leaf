@@ -77,7 +77,7 @@ export async function GET(req: APIRequest) {
       content: leaf.content,
       isAnonymous: leaf.isAnonymous,
       leafType: leaf.leafType,
-      authorName: leaf.user.name,
+      authorName: leaf.isAnonymous ? "익명" : leaf.user.name,
     }));
 
     return new Response(
