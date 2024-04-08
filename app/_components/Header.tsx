@@ -24,7 +24,7 @@ export function Header() {
       ) : (
         <div></div>
       )}
-      {session && isHome ? (
+      {session && isHome && (
         <IconButton
           className="flex size-8 items-center justify-center rounded-full bg-c2"
           name="Plus"
@@ -33,7 +33,8 @@ export function Header() {
             router.push(`${routes["select-leaf"]}/${params.recipientId}`)
           }
         />
-      ) : (
+      )}
+      {!session && isHome && (
         <button
           onClick={() => router.push("/login")}
           className="rounded-md bg-c2 p-1 text-sm text-c0"
