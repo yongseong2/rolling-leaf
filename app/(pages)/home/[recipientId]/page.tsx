@@ -8,6 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import { QUERY_KEYS } from "@/app/_query";
 import { getLeafs, getRecipientName } from "./_api";
 import { ShareButton } from "./_components/ShareButton";
+import { useSession } from "next-auth/react";
 
 export default function MainPage({
   params,
@@ -18,6 +19,10 @@ export default function MainPage({
   const randomPosition = (max: number) => {
     return Math.floor(Math.random() * max);
   };
+
+  const { data: session } = useSession();
+  const isMine = session?.user.id === params.recipientId;
+
   const pondRef = useRef<HTMLDivElement>(null);
   const [pondSize, setPondSize] = useState({ width: 0, height: 0 });
   const { data: apiLeafs, isSuccess } = useQuery({
@@ -59,15 +64,30 @@ export default function MainPage({
     }
   }, [isSuccess, apiLeafs?.counts]);
 
+  useEffect(() => {
+    sessionStorage.setItem("from", params.recipientId);
+  }, []);
+
   return (
     <div className="flex h-full flex-col justify-between gap-5">
       <div className="">
         <h1 className="text-xl text-c0">
-          {apiRecipientName ? apiRecipientName.recipientName : "풀잎이"}님에게
+          {apiRecipientName && apiRecipientName.recipientName
+            ? apiRecipientName.recipientName
+            : "풀잎이"}
+          님{isMine ? "에게" : "의"}
         </h1>
         <h1 className="text-2xl font-bold text-dark-text">
-          <span className="text-c0">{apiLeafs ? apiLeafs.counts : "0"} </span>
-          개의 메시지가 전달됐어요
+          {isMine ? (
+            <>
+              <span className="text-c0">
+                {apiLeafs ? apiLeafs.counts : "0"}{" "}
+              </span>
+              개의 메시지가 전달됐어요
+            </>
+          ) : (
+            "메시지를 확인해보세요"
+          )}
         </h1>
       </div>
       <Pond ref={pondRef}>
