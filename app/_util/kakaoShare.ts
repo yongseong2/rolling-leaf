@@ -3,10 +3,11 @@ export function kakaoShare(recipientId: string, recipientName: string) {
     objectType: "feed",
     content: {
       title: `${recipientName}님의 롤링 페이퍼를 구경하세요`,
-      imageUrl: "#",
+      imageUrl:
+        "https://rolling-leaf.vercel.app/_next/image?url=%2Fimages%2Fleaves%2Fleaf0.png&w=828&q=75",
       link: {
-        mobileWebUrl: "#",
-        webUrl: "#",
+        mobileWebUrl: `https://rolling-leaf.vercel.app/home/${recipientId}`,
+        webUrl: `https://rolling-leaf.vercel.app/home/${recipientId}`,
       },
     },
     itemContent: {

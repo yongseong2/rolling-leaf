@@ -15,11 +15,11 @@ export function useProtectRoute() {
   useEffect(() => {
     if (session.status === "authenticated" && isLoginPage) {
       if (from) {
-        router.push(`/${routes.home}/${from}`);
+        router.push(`${routes.home}/${from}`);
         sessionStorage.removeItem("from");
         return;
       }
-      router.push(`/${routes.home}/${session.data.user?.id}`);
+      router.push(`${routes.home}/${session.data.user?.id}`);
     } else if (
       session.status === "unauthenticated" &&
       !isLoginPage &&
