@@ -9,7 +9,7 @@ export function useProtectRoute() {
   const router = useRouter();
   const pathname = usePathname();
   const isLoginPage = pathname === "/login" || pathname === "/oauth";
-  const isHomePath = pathname.startsWith(`/${routes.home}`);
+  const isHomePath = pathname.startsWith(`${routes.home}`);
   const from = sessionStorage.getItem("from");
 
   useEffect(() => {
